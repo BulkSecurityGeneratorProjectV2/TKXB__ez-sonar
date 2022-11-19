@@ -33,6 +33,7 @@ import org.sonar.plugins.java.api.tree.Tree.Kind;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -166,7 +167,7 @@ public class MethodMatcherFactoryTest {
 
   public static File buildTestFile(String... codeLines) {
     try {
-      File file = File.createTempFile("InLineTest", ".java");
+      File file = Files.createTempFile("InLineTest", ".java").toFile();
       file.deleteOnExit();
       try (PrintWriter printer = new PrintWriter(file)) {
         for (String line : codeLines) {

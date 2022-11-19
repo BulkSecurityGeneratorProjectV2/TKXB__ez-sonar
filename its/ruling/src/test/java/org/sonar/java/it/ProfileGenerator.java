@@ -28,6 +28,7 @@ import com.sonar.orchestrator.locator.FileLocation;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -74,7 +75,7 @@ public class ProfileGenerator {
       sb.append("</rules>")
         .append("</profile>");
 
-      File file = File.createTempFile("profile", ".xml");
+      File file = Files.createTempFile("profile", ".xml").toFile();
       Files.write(sb, file, StandardCharsets.UTF_8);
       orchestrator.getServer().restoreProfile(FileLocation.of(file));
       file.delete();
